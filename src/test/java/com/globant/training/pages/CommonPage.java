@@ -3,10 +3,13 @@ package com.globant.training.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class CommonPage {
+public abstract class CommonPage<T extends CommonPage<T>> extends
+		LoadableComponent<T> {
 	@FindBy(xpath = "//input[@id=\"navbar-query\"]")
 	protected WebElement searchField;
 
@@ -29,31 +32,16 @@ public abstract class CommonPage {
 	protected WebElement helpLink;
 
 	protected final WebDriver driver;
-	protected final String title;
-	protected final WebDriverWait wait;
+	//protected final WebDriverWait wait;
 
-	public CommonPage(WebDriver driver, String title) {
+	public CommonPage(WebDriver driver) {
 		this.driver = driver;
-		this.title = title;
-		wait = new WebDriverWait(driver, 10);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		checkCorrectPage();
+		//wait = new WebDriverWait(driver, 10);
+		PageFactory.initElements(driver, this);
 	}
 
 	public ResultsPage commonSearch(String key) {
 		return new ResultsPage(driver);
-	}
-
-	protected void checkCorrectPage() {
-		if (!driver.getTitle().trim().equals(title)) {
-			throw new IllegalStateException("This is not the right page - "
-					+ driver.getCurrentUrl() + " - Title: "
-					+ driver.getTitle().trim() + " --- Should be: " + title);
-		}
 	}
 
 	/**
@@ -121,5 +109,10 @@ public abstract class CommonPage {
 
 	public Select getFilterDropDown() {
 		return new Select(searchDropDownFilter);
+	}
+
+	public RegisterPage goToRegisterPage() {
+		registerLink.click();
+		return new RegisterPage(driver);
 	}
 }

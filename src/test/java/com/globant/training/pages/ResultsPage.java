@@ -2,11 +2,21 @@ package com.globant.training.pages;
 
 import org.openqa.selenium.WebDriver;
 
-import com.globant.training.tools.Titles;
-
-public class ResultsPage extends CommonPage {
+public class ResultsPage extends CommonPage<ResultsPage> {
 
 	public ResultsPage(WebDriver driver) {
-		super(driver, Titles.getTitle(Titles.RESULTS_PAGE_TITLE_KEY));
+		super(driver);
+	}
+
+	@Override
+	protected void isLoaded() throws Error {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void load() {
+		// TODO Auto-generated method stub
+
 	}
 }

@@ -10,6 +10,7 @@ public class AppProperties {
 	private static final String APP_PROPERTIES_FILE = "app-properties.properties";
 	private static final Properties properties = new Properties();
 	public static final String HOME_URL_KEY = "homeUrl";
+	public static final String REGISTER_URL_KEY = "registerUrl";
 	public static final String DROP_DOWN_FILTER_OPTIONS_KEY = "dropDownFilterOptions";
 
 	public static final String getProperty(String key) {
