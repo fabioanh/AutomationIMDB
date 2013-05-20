@@ -16,12 +16,11 @@ public class HomePage extends CommonPage<HomePage> {
 	protected void isLoaded() throws Error {
 		String url = driver.getCurrentUrl();
 		assertTrue(url.equals(AppProperties
-				.getProperty(AppProperties.HOME_URL_KEY)),
-				"This is the wrong page");
+				.getProperty(AppProperties.HOME_URL_KEY)));
 	}
 
 	@Override
 	protected void load() {
-		driver.get("http://www.imdb.com");
+		driver.get(AppProperties.getProperty(AppProperties.HOME_URL_KEY));
 	}
 }

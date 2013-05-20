@@ -5,7 +5,9 @@ import static org.testng.Assert.assertTrue;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -21,8 +23,9 @@ import com.globant.training.pages.RegisterPage;
 public class ImdbRegisterPageTest {
 
 	private WebDriver driver;
+	private RegisterPage registerPage;
 
-	@BeforeMethod(groups = "suiteRegister")
+	@BeforeGroups(groups = "suiteRegister")
 	public void setUp() {
 		FirefoxProfile profile = new FirefoxProfile();
 		profile.setPreference("intl.accept_languages", "en");
@@ -31,9 +34,9 @@ public class ImdbRegisterPageTest {
 
 	@Test(groups = "suiteRegister")
 	public void genderRadiosTest() {
-		HomePage homePage = new HomePage(driver).get();
 
-		RegisterPage registerPage = homePage.goToRegisterPage();
+		HomePage homePage = new HomePage(driver).get();
+		registerPage = homePage.goToRegisterPage();
 
 		registerPage.selectFemaleGender();
 		assertTrue(
@@ -48,7 +51,14 @@ public class ImdbRegisterPageTest {
 				"Both gender radio buttons should not be selected at the same time");
 	}
 
-	@AfterMethod(groups = "suiteRegister")
+	@Test(groups = "suiteRegister")
+	public void countryDropDownTest() {
+		registerPage = new RegisterPage(driver).get();
+		assertTrue(registerPage.getCountrySelect().getOptions().size() > 10,
+				"Number of countries must be greather than 10");
+	}
+
+	@AfterGroups(groups = "suiteRegister")
 	public void tearDown() {
 		driver.close();
 	}

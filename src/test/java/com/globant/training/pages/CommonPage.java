@@ -32,11 +32,12 @@ public abstract class CommonPage<T extends CommonPage<T>> extends
 	protected WebElement helpLink;
 
 	protected final WebDriver driver;
-	//protected final WebDriverWait wait;
+
+	protected final WebDriverWait wait;
 
 	public CommonPage(WebDriver driver) {
 		this.driver = driver;
-		//wait = new WebDriverWait(driver, 10);
+		wait = new WebDriverWait(driver, 10);
 		PageFactory.initElements(driver, this);
 	}
 
@@ -113,6 +114,6 @@ public abstract class CommonPage<T extends CommonPage<T>> extends
 
 	public RegisterPage goToRegisterPage() {
 		registerLink.click();
-		return new RegisterPage(driver);
+		return new RegisterPage(driver).get();
 	}
 }

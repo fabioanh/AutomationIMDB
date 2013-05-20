@@ -1,20 +1,19 @@
 package com.globant.training;
 
+import static org.testng.Assert.assertTrue;
+
 import java.util.Arrays;
 import java.util.List;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterGroups;
+import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
 import com.globant.training.pages.HomePage;
 import com.globant.training.tools.AppProperties;
 import com.globant.training.tools.Tools;
-
-import static org.testng.Assert.assertTrue;
 
 /**
  * Test for IMDB header.
@@ -25,23 +24,21 @@ import static org.testng.Assert.assertTrue;
 public class ImdbHeaderTest {
 
 	private FirefoxDriver driver;
+	private HomePage homePage;
 
-	@BeforeMethod
+	@BeforeGroups(groups = "suiteHeader")
 	public void setUp() {
 		FirefoxProfile profile = new FirefoxProfile();
 		profile.setPreference("intl.accept_languages", "en");
 		driver = new FirefoxDriver(profile);
-		driver.get(AppProperties.getProperty(AppProperties.HOME_URL_KEY));
+		homePage = new HomePage(driver).get();
 	}
 
 	/**
 	 * Checks whether the logo and search components are present or not.
 	 */
-	@Test
+	@Test(groups = "suiteHeader")
 	public void presentSearchComponentsTest() {
-		HomePage homePage = new HomePage(driver);
-		PageFactory.initElements(driver, homePage);
-
 		assertTrue(homePage.isLogoPresent(), "The logo is not present");
 		assertTrue(homePage.isSearchButtonPresent(),
 				"The search button is not present");
@@ -53,11 +50,8 @@ public class ImdbHeaderTest {
 		System.out.println("presentSearchComponentsTest finish");
 	}
 
-	@Test
+	@Test(groups = "suiteHeader")
 	public void dropDownOptionsTest() {
-		HomePage homePage = new HomePage(driver);
-		PageFactory.initElements(driver, homePage);
-
 		List<String> dropDownNeededFilters = Arrays.asList(AppProperties
 				.getProperty(AppProperties.DROP_DOWN_FILTER_OPTIONS_KEY).split(
 						","));
@@ -70,11 +64,8 @@ public class ImdbHeaderTest {
 		System.out.println("dropDownOptionsTest finish");
 	}
 
-	@Test
+	@Test(groups = "suiteHeader")
 	public void presentLinksTest() {
-		HomePage homePage = new HomePage(driver);
-		PageFactory.initElements(driver, homePage);
-
 		assertTrue(homePage.isRegisterLinkPresent(),
 				"The Register link is not present");
 		assertTrue(homePage.isLoginLinkPresent(),
@@ -84,7 +75,7 @@ public class ImdbHeaderTest {
 		System.out.println("presentLinksTest finish");
 	}
 
-	@AfterMethod
+	@AfterGroups(groups = "suiteHeader")
 	public void tearDown() {
 		driver.close();
 	}
