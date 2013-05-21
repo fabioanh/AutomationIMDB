@@ -1,28 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="11363" started-at="2013-05-21T16:51:12Z" finished-at="2013-05-21T16:51:23Z">
+  <suite name="Default suite" duration-ms="13089" started-at="2013-05-21T21:54:42Z" finished-at="2013-05-21T21:54:55Z">
     <groups>
-      <group name="suiteRegister">
-        <method signature="ImdbRegisterPageTest.shortPasswordMessageTest()[pri:0, instance:com.globant.training.ImdbRegisterPageTest@622e3f2]" name="shortPasswordMessageTest" class="com.globant.training.ImdbRegisterPageTest"/>
-      </group> <!-- suiteRegister -->
+      <group name="suiteLogin">
+        <method signature="ImdbLoginPageTest.loginProvidersTest(java.lang.String)[pri:0, instance:com.globant.training.ImdbLoginPageTest@63b9e1e7]" name="loginProvidersTest" class="com.globant.training.ImdbLoginPageTest"/>
+      </group> <!-- suiteLogin -->
     </groups>
-    <test name="Default test" duration-ms="11363" started-at="2013-05-21T16:51:12Z" finished-at="2013-05-21T16:51:23Z">
-      <class name="com.globant.training.ImdbRegisterPageTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.globant.training.ImdbRegisterPageTest@622e3f2]" name="setUp" is-config="true" duration-ms="4854" started-at="2013-05-21T11:51:12Z" finished-at="2013-05-21T11:51:17Z">
+    <test name="Default test" duration-ms="13089" started-at="2013-05-21T21:54:42Z" finished-at="2013-05-21T21:54:55Z">
+      <class name="com.globant.training.ImdbLoginPageTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.globant.training.ImdbLoginPageTest@63b9e1e7]" name="setUp" is-config="true" duration-ms="10224" started-at="2013-05-21T16:54:42Z" finished-at="2013-05-21T16:54:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="shortPasswordMessageTest()[pri:0, instance:com.globant.training.ImdbRegisterPageTest@622e3f2]" name="shortPasswordMessageTest" duration-ms="6490" started-at="2013-05-21T11:51:17Z" finished-at="2013-05-21T11:51:23Z">
+        <test-method status="PASS" signature="loginProvidersTest(java.lang.String)[pri:0, instance:com.globant.training.ImdbLoginPageTest@63b9e1e7]" name="loginProvidersTest" duration-ms="2652" started-at="2013-05-21T16:54:52Z" data-provider="login-providers" finished-at="2013-05-21T16:54:55Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Facebook]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- shortPasswordMessageTest -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.globant.training.ImdbRegisterPageTest@622e3f2]" name="tearDown" is-config="true" duration-ms="7" started-at="2013-05-21T11:51:23Z" finished-at="2013-05-21T11:51:23Z">
+        </test-method> <!-- loginProvidersTest -->
+        <test-method status="PASS" signature="loginProvidersTest(java.lang.String)[pri:0, instance:com.globant.training.ImdbLoginPageTest@63b9e1e7]" name="loginProvidersTest" duration-ms="189" started-at="2013-05-21T16:54:55Z" data-provider="login-providers" finished-at="2013-05-21T16:54:55Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Google]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginProvidersTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.globant.training.ImdbLoginPageTest@63b9e1e7]" name="tearDown" is-config="true" duration-ms="8" started-at="2013-05-21T16:54:55Z" finished-at="2013-05-21T16:54:55Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.globant.training.ImdbRegisterPageTest -->
+      </class> <!-- com.globant.training.ImdbLoginPageTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

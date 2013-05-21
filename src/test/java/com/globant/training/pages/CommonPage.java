@@ -1,9 +1,14 @@
 package com.globant.training.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,6 +35,12 @@ public abstract class CommonPage<T extends CommonPage<T>> extends
 
 	@FindBy(linkText = "Help")
 	protected WebElement helpLink;
+
+	@FindBy(id = "cboxWrapper")
+	protected WebElement loginContainer;
+
+	@FindBy(className = "oauth-link")
+	protected List<WebElement> loginLinkProviders;
 
 	protected final WebDriver driver;
 
@@ -126,5 +137,49 @@ public abstract class CommonPage<T extends CommonPage<T>> extends
 	public RegisterPage goToRegisterPage() {
 		registerLink.click();
 		return new RegisterPage(driver).get();
+	}
+
+	/**
+	 * Clicks the Login link
+	 * 
+	 * @return
+	 */
+	public void goToLogin() {
+		loginLink.click();
+	}
+
+	/**
+	 * Checks whether the login component is visible or not
+	 * 
+	 * @return
+	 */
+	public boolean isLoginWindowVisible() {
+		return loginContainer.isDisplayed();
+	}
+
+	public void forceFactoryInitComponents() {
+		PageFactory.initElements(driver, this);
+	}
+
+	/**
+	 * Checks whether all providers given in the input list are available or not
+	 * checking by its text
+	 * 
+	 * @param providers
+	 * @return
+	 */
+	public boolean loginContainersPresent(List<String> providers) {
+		wait.until(ExpectedConditions.presenceOfElementLocated(By
+				.className("cboxIframe")));
+		driver.switchTo().frame(driver.findElement(By.className("cboxIframe")));
+		wait.until(ExpectedConditions.elementToBeClickable(By
+				.className("oauth-link")));
+		loginLinkProviders = driver.findElements(By.className("oauth-link"));
+		List<String> relLoginLinks = new ArrayList<String>();
+		for (WebElement we : loginLinkProviders) {
+			relLoginLinks.add(we.getText());
+		}
+		driver.switchTo().defaultContent();
+		return relLoginLinks.containsAll(providers);
 	}
 }

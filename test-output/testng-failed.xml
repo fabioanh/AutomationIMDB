@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.globant.training.ImdbRegisterPageTest">
+      <class name="com.globant.training.ImdbLoginPageTest">
         <methods>
-          <include name="tearDown"/>
-          <include name="genderRadiosTest"/>
+          <include name="loginProvidersTest" invocation-numbers="1"/>
           <include name="setUp"/>
+          <include name="tearDown"/>
         </methods>
-      </class> <!-- com.globant.training.ImdbRegisterPageTest -->
+      </class> <!-- com.globant.training.ImdbLoginPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -3,16 +3,17 @@ package com.globant.training;
 import static org.testng.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeGroups;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.globant.training.pages.HomePage;
-import com.globant.training.tools.AppProperties;
 import com.globant.training.tools.Tools;
 
 /**
@@ -25,6 +26,11 @@ public class ImdbHeaderTest {
 
 	private FirefoxDriver driver;
 	private HomePage homePage;
+
+	@DataProvider(name = "filter-options")
+	public static Iterator<Object[]> getDataFromFile() throws Exception {
+		return Tools.getIteratorForProperties("filter-options.properties");
+	}
 
 	@BeforeGroups(groups = "suiteHeader")
 	public void setUp() {
@@ -50,18 +56,15 @@ public class ImdbHeaderTest {
 		System.out.println("presentSearchComponentsTest finish");
 	}
 
-	@Test(groups = "suiteHeader")
-	public void dropDownOptionsTest() {
-		List<String> dropDownNeededFilters = Arrays.asList(AppProperties
-				.getProperty(AppProperties.DROP_DOWN_FILTER_OPTIONS_KEY).split(
-						","));
+	@Test(groups = "suiteHeader", dataProvider = "filter-options")
+	public void dropDownOptionsTest(String filter) {
+		List<String> dropDownNeededFilters = Arrays.asList(filter);
 
 		assertTrue(Tools.doesDropDownContainsOptions(
 				homePage.getFilterDropDown(), dropDownNeededFilters),
-				"Drop Down should contain all the options: "
-						+ dropDownNeededFilters);
+				"Drop Down should contain the option: " + filter);
 
-		System.out.println("dropDownOptionsTest finish");
+		System.out.println("dropDownOptionsTest finished for " + filter);
 	}
 
 	@Test(groups = "suiteHeader")

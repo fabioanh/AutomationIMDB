@@ -11,6 +11,8 @@ public class Inputs {
 	private static final Properties properties = new Properties();
 	public static final String INVALID_MAIL = "invalidMail";
 	public static final String INVALID_SHORT_PASSWORD = "invalidShortPassword";
+	public static final String DROP_DOWN_FILTER_OPTIONS_KEY = "dropDownFilterOptions";
+	public static final String LOGIN_PROVIDERS_KEY = "textLoginProviders";
 
 	public static final String getProperty(String key) {
 		if (properties.isEmpty()) {

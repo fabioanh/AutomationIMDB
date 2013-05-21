@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="My test suite">
+	<groups>
+		<run>
+			<!-- <include name="suite1" /> -->
+			<include name="suiteRegister" />
+			<!-- <include name="suite3" /> -->
+		</run>
+	</groups>
+	<test name="suiteTest">
+		<packages>
+			<package name="com.globant.training" />
+		</packages>
+	</test>
+</suite>
