@@ -6,13 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.testng.annotations.AfterGroups;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeGroups;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.globant.training.pages.HomePage;
 import com.globant.training.pages.RegisterPage;
+import com.globant.training.tools.AppProperties;
+import com.globant.training.tools.Inputs;
 
 /**
  * Test for IMDB header.
@@ -56,6 +56,30 @@ public class ImdbRegisterPageTest {
 		registerPage = new RegisterPage(driver).get();
 		assertTrue(registerPage.getCountrySelect().getOptions().size() > 10,
 				"Number of countries must be greather than 10");
+	}
+
+	@Test(groups = "suiteRegister")
+	public void invalidMailMessageTest() {
+		registerPage = new RegisterPage(driver).get();
+		registerPage = registerPage.enterMail(Inputs
+				.getProperty(Inputs.INVALID_MAIL));
+		registerPage.submit();
+		assertTrue(registerPage.errorMessagePresent(AppProperties
+				.getProperty(AppProperties.INVALID_MAIL_MESSAGE_KEY)),
+				"invalid mail message should be present");
+	}
+
+	@Test(groups = "suiteRegister")
+	public void shortPasswordMessageTest() {
+		registerPage = new RegisterPage(driver).get();
+		registerPage = registerPage.enterPassword(Inputs
+				.getProperty(Inputs.INVALID_SHORT_PASSWORD));
+		registerPage.submit();
+		assertTrue(
+				registerPage
+						.errorMessagePresent(AppProperties
+								.getProperty(AppProperties.INVALID_SHORT_PASSWORD_MESSAGE_KEY)),
+				"short password message should be present");
 	}
 
 	@AfterGroups(groups = "suiteRegister")

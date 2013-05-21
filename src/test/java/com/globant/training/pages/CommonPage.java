@@ -42,6 +42,7 @@ public abstract class CommonPage<T extends CommonPage<T>> extends
 	}
 
 	public ResultsPage commonSearch(String key) {
+		// TODO: Add logic to do the search
 		return new ResultsPage(driver);
 	}
 
@@ -108,10 +109,20 @@ public abstract class CommonPage<T extends CommonPage<T>> extends
 		return searchDropDownFilter != null;
 	}
 
+	/**
+	 * Gets the drop down filter of the search bar
+	 * 
+	 * @return
+	 */
 	public Select getFilterDropDown() {
 		return new Select(searchDropDownFilter);
 	}
 
+	/**
+	 * Clicks the Register link
+	 * 
+	 * @return
+	 */
 	public RegisterPage goToRegisterPage() {
 		registerLink.click();
 		return new RegisterPage(driver).get();

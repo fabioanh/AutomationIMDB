@@ -12,6 +12,8 @@ public class AppProperties {
 	public static final String HOME_URL_KEY = "homeUrl";
 	public static final String REGISTER_URL_KEY = "registerUrl";
 	public static final String DROP_DOWN_FILTER_OPTIONS_KEY = "dropDownFilterOptions";
+	public static final String INVALID_MAIL_MESSAGE_KEY = "invalidMailMessage";
+	public static final String INVALID_SHORT_PASSWORD_MESSAGE_KEY = "shortPasswordMessage";
 
 	public static final String getProperty(String key) {
 		if (properties.isEmpty()) {
